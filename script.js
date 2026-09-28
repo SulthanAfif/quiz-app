@@ -1,6 +1,4 @@
-// ============================================
-// 1. DARK MODE
-// ============================================
+// ===== DARK MODE =====
 const darkModeToggle = document.getElementById("darkModeToggle");
 const body = document.body;
 
@@ -11,86 +9,63 @@ if (localStorage.getItem("darkMode") === "enabled") {
 
 darkModeToggle.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
-    if (body.classList.contains("dark-mode")) {
-        darkModeToggle.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        darkModeToggle.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
-    }
+    darkModeToggle.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
 });
 
-// ============================================
-// 2. DATA SOAL
-// Setiap soal punya: pertanyaan, pilihan, dan index jawaban benar
-// ============================================
-const allQuestions = [
-    {
-        question: "Apa kepanjangan dari HTML?",
-        options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"],
-        correct: 0
-    },
-    {
-        question: "Tag mana yang digunakan untuk membuat hyperlink?",
-        options: ["<link>", "<a>", "<href>", "<url>"],
-        correct: 1
-    },
-    {
-        question: "Properti CSS untuk mengubah warna teks adalah?",
-        options: ["text-color", "font-color", "color", "text-style"],
-        correct: 2
-    },
-    {
-        question: "Apa kepanjangan CSS?",
-        options: ["Computer Style Sheet", "Creative Style System", "Cascading Style Sheets", "Colorful Style Sheets"],
-        correct: 2
-    },
-    {
-        question: "Cara memilih elemen berdasarkan ID di JavaScript?",
-        options: ["document.querySelector()", "document.getElementById()", "document.getElementsByClass()", "document.find()"],
-        correct: 1
-    },
-    {
-        question: "Manakah yang termasuk library/framework JavaScript?",
-        options: ["Laravel", "Django", "React", "Flask"],
-        correct: 2
-    },
-    {
-        question: "Fungsi localStorage adalah?",
-        options: ["Menyimpan data di server", "Menyimpan data di browser pengguna", "Menghapus cache", "Menghubungkan database"],
-        correct: 1
-    },
-    {
-        question: "Tag HTML untuk menampilkan gambar?",
-        options: ["<picture>", "<img>", "<image>", "<src>"],
-        correct: 1
-    },
-    {
-        question: "Apa arti responsive design?",
-        options: ["Website cepat loading", "Tampilan menyesuaikan ukuran layar", "Hanya untuk desktop", "Banyak animasi"],
-        correct: 1
-    },
-    {
-        question: "Cara deklarasi variabel modern di JavaScript?",
-        options: ["var nama = 'Budi'", "let nama = 'Budi'", "variable nama = 'Budi'", "nama := 'Budi'"],
-        correct: 1
-    }
-];
+// ===== BANK SOAL =====
+const questionBank = {
+    html: [
+        { question: "Apa kepanjangan HTML?", options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"], correct: 0 },
+        { question: "Tag untuk membuat hyperlink?", options: ["<link>", "<a>", "<href>", "<url>"], correct: 1 },
+        { question: "Tag untuk menampilkan gambar?", options: ["<picture>", "<img>", "<image>", "<src>"], correct: 1 },
+        { question: "Tag heading terbesar adalah?", options: ["<h6>", "<h3>", "<h1>", "<head>"], correct: 2 },
+        { question: "Atribut yang wajib ada di tag <img>?", options: ["href", "src", "link", "alt saja"], correct: 1 },
+        { question: "Tag untuk membuat daftar tidak berurutan?", options: ["<ol>", "<ul>", "<li>", "<dl>"], correct: 1 },
+        { question: "Tag semantik untuk navigasi?", options: ["<nav>", "<navigation>", "<menu>", "<header>"], correct: 0 },
+        { question: "Apa fungsi tag <br>?", options: ["Membuat paragraf", "Line break", "Bold text", "Italic"], correct: 1 },
+        { question: "Tag untuk teks tebal?", options: ["<bold>", "<strong>", "<b-text>", "<thick>"], correct: 1 },
+        { question: "Doctype yang benar untuk HTML5?", options: ["<!DOCTYPE html>", "<!DOCTYPE HTML5>", "<html5>", "<!html>"], correct: 0 }
+    ],
+    css: [
+        { question: "Apa kepanjangan CSS?", options: ["Computer Style Sheet", "Creative Style System", "Cascading Style Sheets", "Colorful Style Sheets"], correct: 2 },
+        { question: "Properti untuk mengubah warna teks?", options: ["text-color", "font-color", "color", "text-style"], correct: 2 },
+        { question: "Cara menambahkan CSS eksternal?", options: ["<style src='...'>", "<link rel='stylesheet'>", "<css href='...'>", "<import>"], correct: 1 },
+        { question: "Properti untuk membuat teks tebal?", options: ["font-style", "font-weight", "text-bold", "font-bold"], correct: 1 },
+        { question: "Nilai display untuk flexbox?", options: ["block", "flex", "inline-flex", "grid"], correct: 1 },
+        { question: "Properti untuk rounded corner?", options: ["border-radius", "corner-radius", "border-round", "radius"], correct: 0 },
+        { question: "Cara memilih class di CSS?", options: ["#nama", ".nama", "nama", "*nama"], correct: 1 },
+        { question: "Properti untuk jarak dalam elemen?", options: ["margin", "padding", "spacing", "gap"], correct: 1 },
+        { question: "Unit relatif terhadap ukuran font parent?", options: ["px", "em", "vh", "cm"], correct: 1 },
+        { question: "Properti untuk bayangan kotak?", options: ["box-shadow", "shadow", "drop-shadow", "border-shadow"], correct: 0 }
+    ],
+    javascript: [
+        { question: "Cara memilih elemen by ID?", options: ["document.querySelector()", "document.getElementById()", "document.getElementsByClass()", "document.find()"], correct: 1 },
+        { question: "Deklarasi variabel modern?", options: ["var nama = 'Budi'", "let nama = 'Budi'", "variable nama = 'Budi'", "nama := 'Budi'"], correct: 1 },
+        { question: "Method untuk menambah elemen di akhir array?", options: ["push()", "pop()", "shift()", "unshift()"], correct: 0 },
+        { question: "Apa itu localStorage?", options: ["Database server", "Penyimpanan di browser", "Cache otomatis", "Cookie"], correct: 1 },
+        { question: "Cara menulis comment satu baris?", options: ["/* comment */", "// comment", "<!-- comment -->", "# comment"], correct: 1 },
+        { question: "Operator perbandingan ketat (nilai + tipe)?", options: ["==", "===", "!=", "="], correct: 1 },
+        { question: "Method mengubah array jadi string?", options: ["toString()", "join()", "Kedua jawaban benar", "split()"], correct: 2 },
+        { question: "Keyword untuk membuat fungsi?", options: ["function", "func", "def", "method"], correct: 0 },
+        { question: "Apa hasil dari typeof null?", options: ["null", "undefined", "object", "number"], correct: 2 },
+        { question: "Cara menghentikan setInterval?", options: ["stopInterval()", "clearInterval()", "clearTimeout()", "stop()"], correct: 1 }
+    ]
+};
 
-// ============================================
-// 3. STATE (kondisi aplikasi)
-// ============================================
-let questions = [];          // soal yang sedang dipakai (setelah diacak)
-let currentQuestion = 0;     // index soal saat ini
-let score = 0;               // skor pemain
-let answered = false;        // apakah sudah menjawab
-let timer;                   // untuk setInterval
-let timeLeft = 15;           // sisa waktu
-let userAnswers = [];        // menyimpan jawaban user (untuk review)
+// ===== STATE =====
+let questions = [];
+let currentQuestion = 0;
+let score = 0;
+let lives = 3;
+let answered = false;
+let timer = null;
+let timeLeft = 15;
+let timePerQuestion = 15;
+let userAnswers = [];
+let allowSkip = true;
 
-// ============================================
-// 4. AMBIL ELEMEN HTML
-// ============================================
+// ===== ELEMENTS =====
 const startScreen = document.getElementById("startScreen");
 const quizScreen = document.getElementById("quizScreen");
 const resultScreen = document.getElementById("resultScreen");
@@ -98,9 +73,13 @@ const reviewScreen = document.getElementById("reviewScreen");
 
 const startBtn = document.getElementById("startBtn");
 const nextBtn = document.getElementById("nextBtn");
+const skipBtn = document.getElementById("skipBtn");
 const restartBtn = document.getElementById("restartBtn");
 const reviewBtn = document.getElementById("reviewBtn");
 const backToResultBtn = document.getElementById("backToResultBtn");
+
+const categorySelect = document.getElementById("categorySelect");
+const difficultySelect = document.getElementById("difficultySelect");
 
 const questionText = document.getElementById("questionText");
 const optionsContainer = document.getElementById("optionsContainer");
@@ -108,23 +87,21 @@ const questionNumber = document.getElementById("questionNumber");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const progressFill = document.getElementById("progressFill");
 const timerDisplay = document.getElementById("timer");
+const livesDisplay = document.getElementById("livesDisplay");
 const finalScore = document.getElementById("finalScore");
+const totalQuestions = document.getElementById("totalQuestions");
 const percentage = document.getElementById("percentage");
 const resultMessage = document.getElementById("resultMessage");
+const resultTitle = document.getElementById("resultTitle");
 const highScoreDisplay = document.getElementById("highScoreDisplay");
 const newHighScore = document.getElementById("newHighScore");
 const reviewList = document.getElementById("reviewList");
 
-// Tampilkan high score saat halaman dibuka
 highScoreDisplay.textContent = localStorage.getItem("quizHighScore") || 0;
 
-// ============================================
-// 5. FUNGSI UTAMA
-// ============================================
-
-// Acak array (Fisher-Yates Shuffle)
-function shuffleArray(array) {
-    const arr = [...array]; // copy biar tidak ubah aslinya
+// ===== HELPERS =====
+function shuffle(array) {
+    const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -132,52 +109,80 @@ function shuffleArray(array) {
     return arr;
 }
 
+function getQuestions() {
+    const category = categorySelect.value;
+    let selected = [];
+
+    if (category === "mixed") {
+        selected = [
+            ...questionBank.html.slice(0, 4),
+            ...questionBank.css.slice(0, 3),
+            ...questionBank.javascript.slice(0, 3)
+        ];
+    } else {
+        selected = [...questionBank[category]];
+    }
+
+    return shuffle(selected).slice(0, 10); // ambil 10 soal
+}
+
+// ===== MAIN FUNCTIONS =====
 function startQuiz() {
-    // Acak soal setiap kali mulai
-    questions = shuffleArray(allQuestions);
+    const difficulty = difficultySelect.value;
+
+    if (difficulty === "easy") {
+        timePerQuestion = 20;
+        allowSkip = true;
+    } else if (difficulty === "medium") {
+        timePerQuestion = 15;
+        allowSkip = true;
+    } else {
+        timePerQuestion = 10;
+        allowSkip = false;
+    }
+
+    questions = getQuestions();
     currentQuestion = 0;
     score = 0;
+    lives = 3;
     userAnswers = [];
     answered = false;
 
-    // Pindah ke layar kuis
     startScreen.classList.add("hidden");
     resultScreen.classList.add("hidden");
     reviewScreen.classList.add("hidden");
     quizScreen.classList.remove("hidden");
 
+    skipBtn.style.display = allowSkip ? "block" : "none";
     showQuestion();
 }
 
 function showQuestion() {
     answered = false;
     nextBtn.classList.add("hidden");
-    timeLeft = 15;
+    timeLeft = timePerQuestion;
 
     const q = questions[currentQuestion];
-
-    // Update tampilan
     questionText.textContent = q.question;
-    questionNumber.textContent = `Pertanyaan ${currentQuestion + 1}/${questions.length}`;
+    questionNumber.textContent = `${currentQuestion + 1}/${questions.length}`;
     scoreDisplay.textContent = score;
     progressFill.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+    livesDisplay.textContent = "❤️".repeat(lives) + "🖤".repeat(3 - lives);
 
-    // Buat tombol pilihan jawaban
     optionsContainer.innerHTML = "";
-    q.options.forEach((option, index) => {
+    q.options.forEach((opt, i) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
-        btn.textContent = option;
-        btn.addEventListener("click", () => selectOption(index));
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(i);
         optionsContainer.appendChild(btn);
     });
 
-    // Mulai timer
     startTimer();
 }
 
 function startTimer() {
-    clearInterval(timer); // bersihkan timer sebelumnya
+    clearInterval(timer);
     timerDisplay.textContent = timeLeft;
     timerDisplay.className = "";
 
@@ -185,18 +190,12 @@ function startTimer() {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
 
-        // Ubah warna timer
-        if (timeLeft <= 5) {
-            timerDisplay.className = "danger";
-        } else if (timeLeft <= 8) {
-            timerDisplay.className = "warning";
-        }
+        if (timeLeft <= 5) timerDisplay.className = "danger";
+        else if (timeLeft <= 8) timerDisplay.className = "warning";
 
-        // Waktu habis
         if (timeLeft <= 0) {
             clearInterval(timer);
-            // Anggap tidak menjawab (salah)
-            selectOption(-1);
+            selectOption(-1); // waktu habis = salah
         }
     }, 1000);
 }
@@ -204,33 +203,37 @@ function startTimer() {
 function selectOption(selectedIndex) {
     if (answered) return;
     answered = true;
-    clearInterval(timer); // hentikan timer
+    clearInterval(timer);
 
     const q = questions[currentQuestion];
     const buttons = optionsContainer.querySelectorAll(".option-btn");
 
-    // Tandai jawaban benar & salah
-    buttons.forEach((btn, index) => {
+    buttons.forEach((btn, i) => {
         btn.disabled = true;
-        if (index === q.correct) {
-            btn.classList.add("correct");
-        } else if (index === selectedIndex) {
-            btn.classList.add("wrong");
-        }
+        if (i === q.correct) btn.classList.add("correct");
+        else if (i === selectedIndex) btn.classList.add("wrong");
     });
 
-    // Simpan jawaban user untuk review
+    const isCorrect = selectedIndex === q.correct;
+
     userAnswers.push({
         question: q.question,
-        userAnswer: selectedIndex === -1 ? "Tidak dijawab" : q.options[selectedIndex],
+        userAnswer: selectedIndex === -1 ? "Tidak dijawab (waktu habis)" : q.options[selectedIndex],
         correctAnswer: q.options[q.correct],
-        isCorrect: selectedIndex === q.correct
+        isCorrect
     });
 
-    // Tambah skor jika benar
-    if (selectedIndex === q.correct) {
+    if (isCorrect) {
         score++;
         scoreDisplay.textContent = score;
+    } else {
+        lives--;
+        livesDisplay.textContent = "❤️".repeat(lives) + "🖤".repeat(3 - lives);
+
+        if (lives <= 0) {
+            setTimeout(showResult, 800);
+            return;
+        }
     }
 
     nextBtn.classList.remove("hidden");
@@ -238,12 +241,16 @@ function selectOption(selectedIndex) {
 
 function nextQuestion() {
     currentQuestion++;
-
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < questions.length && lives > 0) {
         showQuestion();
     } else {
         showResult();
     }
+}
+
+function skipQuestion() {
+    if (answered || !allowSkip) return;
+    selectOption(-1); // anggap salah
 }
 
 function showResult() {
@@ -252,21 +259,27 @@ function showResult() {
     resultScreen.classList.remove("hidden");
 
     finalScore.textContent = score;
+    totalQuestions.textContent = `/${questions.length}`;
     const percent = Math.round((score / questions.length) * 100);
     percentage.textContent = `${percent}%`;
 
-    // Pesan berdasarkan skor
-    if (score === 10) {
-        resultMessage.textContent = "Sempurna! Kamu jenius! 🔥";
+    if (lives <= 0) {
+        resultTitle.textContent = "Game Over!";
+        resultMessage.textContent = "Nyawa kamu habis 💔";
+    } else if (score === questions.length) {
+        resultTitle.textContent = "Sempurna!";
+        resultMessage.textContent = "Kamu menjawab semua dengan benar! 🔥";
     } else if (score >= 7) {
-        resultMessage.textContent = "Bagus! Pengetahuanmu bagus 👍";
+        resultTitle.textContent = "Bagus!";
+        resultMessage.textContent = "Pengetahuanmu cukup baik 👍";
     } else if (score >= 4) {
-        resultMessage.textContent = "Lumayan, masih bisa lebih baik 💪";
+        resultTitle.textContent = "Lumayan";
+        resultMessage.textContent = "Masih bisa lebih baik 💪";
     } else {
-        resultMessage.textContent = "Jangan menyerah, coba lagi ya! 😊";
+        resultTitle.textContent = "Coba Lagi";
+        resultMessage.textContent = "Jangan menyerah! 😊";
     }
 
-    // Cek High Score
     const highScore = Number(localStorage.getItem("quizHighScore") || 0);
     if (score > highScore) {
         localStorage.setItem("quizHighScore", score);
@@ -280,7 +293,6 @@ function showResult() {
 function showReview() {
     resultScreen.classList.add("hidden");
     reviewScreen.classList.remove("hidden");
-
     reviewList.innerHTML = "";
 
     userAnswers.forEach((item, i) => {
@@ -297,12 +309,14 @@ function showReview() {
     });
 }
 
-// ============================================
-// 6. EVENT LISTENER
-// ============================================
+// ===== EVENTS =====
 startBtn.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", nextQuestion);
-restartBtn.addEventListener("click", startQuiz);
+skipBtn.addEventListener("click", skipQuestion);
+restartBtn.addEventListener("click", () => {
+    startScreen.classList.remove("hidden");
+    resultScreen.classList.add("hidden");
+});
 reviewBtn.addEventListener("click", showReview);
 backToResultBtn.addEventListener("click", () => {
     reviewScreen.classList.add("hidden");

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
+    <title>Quiz App Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,26 +13,40 @@
             <button id="darkModeToggle" class="dark-mode-btn">🌙</button>
         </header>
 
-        <!-- Start Screen -->
+        <!-- ========== START SCREEN ========== -->
         <div id="startScreen" class="screen">
             <div class="start-content">
                 <h2>Frontend Quiz</h2>
-                <p>Uji pengetahuan HTML, CSS & JavaScript kamu!</p>
-                <div class="start-info">
-                    <span>10 Soal</span>
-                    <span>•</span>
-                    <span>15 detik / soal</span>
+                <p class="subtitle">Uji pengetahuanmu sekarang!</p>
+
+                <div class="setup-box">
+                    <label>Kategori</label>
+                    <select id="categorySelect">
+                        <option value="mixed">Campuran</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+
+                    <label>Tingkat Kesulitan</label>
+                    <select id="difficultySelect">
+                        <option value="easy">Mudah (20 detik)</option>
+                        <option value="medium" selected>Sedang (15 detik)</option>
+                        <option value="hard">Sulit (10 detik)</option>
+                    </select>
                 </div>
+
                 <p class="high-score">High Score: <strong id="highScoreDisplay">0</strong></p>
                 <button id="startBtn" class="btn primary">Mulai Kuis</button>
             </div>
         </div>
 
-        <!-- Quiz Screen -->
+        <!-- ========== QUIZ SCREEN ========== -->
         <div id="quizScreen" class="screen hidden">
             <div class="quiz-header">
-                <div class="progress-info">
-                    <span id="questionNumber">Pertanyaan 1/10</span>
+                <div class="top-bar">
+                    <span id="questionNumber">1/10</span>
+                    <div class="lives" id="livesDisplay">❤️❤️❤️</div>
                     <span id="timer">15</span>
                 </div>
                 <div class="progress-bar">
@@ -42,23 +56,24 @@
             </div>
 
             <div class="question-box">
-                <h2 id="questionText">Pertanyaan akan muncul di sini</h2>
+                <h2 id="questionText">Pertanyaan muncul di sini</h2>
             </div>
 
             <div id="optionsContainer" class="options"></div>
 
             <div class="quiz-footer">
+                <button id="skipBtn" class="btn secondary">Lewati</button>
                 <button id="nextBtn" class="btn primary hidden">Selanjutnya →</button>
             </div>
         </div>
 
-        <!-- Result Screen -->
+        <!-- ========== RESULT SCREEN ========== -->
         <div id="resultScreen" class="screen hidden">
             <div class="result-content">
-                <h2>Hasil Kuis</h2>
+                <h2 id="resultTitle">Hasil Kuis</h2>
                 <div class="score-circle">
                     <span id="finalScore">0</span>
-                    <small>/ 10</small>
+                    <small id="totalQuestions">/10</small>
                 </div>
                 <p id="percentage">0%</p>
                 <p id="resultMessage">Kerja bagus!</p>
@@ -71,7 +86,7 @@
             </div>
         </div>
 
-        <!-- Review Screen -->
+        <!-- ========== REVIEW SCREEN ========== -->
         <div id="reviewScreen" class="screen hidden">
             <h2 class="review-title">Review Jawaban</h2>
             <div id="reviewList" class="review-list"></div>
