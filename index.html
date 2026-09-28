@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quiz App</h1>
+            <button id="darkModeToggle" class="dark-mode-btn">🌙</button>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen">
+            <div class="start-content">
+                <h2>Selamat Datang!</h2>
+                <p>Uji pengetahuanmu dengan kuis singkat ini.</p>
+                <p class="info">10 pertanyaan · Pilihan ganda</p>
+                <button id="startBtn" class="btn primary">Mulai Kuis</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen hidden">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="questionNumber">Pertanyaan 1/10</span>
+                    <span id="scoreDisplay">Skor: 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <h2 id="questionText">Pertanyaan akan muncul di sini</h2>
+            </div>
+
+            <div id="optionsContainer" class="options"></div>
+
+            <div class="quiz-footer">
+                <button id="nextBtn" class="btn primary hidden">Selanjutnya →</button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="resultScreen" class="screen hidden">
+            <div class="result-content">
+                <h2>Hasil Kuis</h2>
+                <div class="score-circle">
+                    <span id="finalScore">0</span>
+                    <small>/ 10</small>
+                </div>
+                <p id="resultMessage">Kerja bagus!</p>
+                <button id="restartBtn" class="btn primary">Main Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
