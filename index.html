@@ -16,9 +16,14 @@
         <!-- Start Screen -->
         <div id="startScreen" class="screen">
             <div class="start-content">
-                <h2>Selamat Datang!</h2>
-                <p>Uji pengetahuanmu dengan kuis singkat ini.</p>
-                <p class="info">10 pertanyaan · Pilihan ganda</p>
+                <h2>Frontend Quiz</h2>
+                <p>Uji pengetahuan HTML, CSS & JavaScript kamu!</p>
+                <div class="start-info">
+                    <span>10 Soal</span>
+                    <span>•</span>
+                    <span>15 detik / soal</span>
+                </div>
+                <p class="high-score">High Score: <strong id="highScoreDisplay">0</strong></p>
                 <button id="startBtn" class="btn primary">Mulai Kuis</button>
             </div>
         </div>
@@ -28,11 +33,12 @@
             <div class="quiz-header">
                 <div class="progress-info">
                     <span id="questionNumber">Pertanyaan 1/10</span>
-                    <span id="scoreDisplay">Skor: 0</span>
+                    <span id="timer">15</span>
                 </div>
                 <div class="progress-bar">
                     <div id="progressFill" class="progress-fill"></div>
                 </div>
+                <div class="score-live">Skor: <span id="scoreDisplay">0</span></div>
             </div>
 
             <div class="question-box">
@@ -54,9 +60,22 @@
                     <span id="finalScore">0</span>
                     <small>/ 10</small>
                 </div>
+                <p id="percentage">0%</p>
                 <p id="resultMessage">Kerja bagus!</p>
-                <button id="restartBtn" class="btn primary">Main Lagi</button>
+                <p class="new-high hidden" id="newHighScore">🎉 High Score Baru!</p>
+
+                <div class="result-actions">
+                    <button id="reviewBtn" class="btn secondary">Lihat Jawaban</button>
+                    <button id="restartBtn" class="btn primary">Main Lagi</button>
+                </div>
             </div>
+        </div>
+
+        <!-- Review Screen -->
+        <div id="reviewScreen" class="screen hidden">
+            <h2 class="review-title">Review Jawaban</h2>
+            <div id="reviewList" class="review-list"></div>
+            <button id="backToResultBtn" class="btn primary">Kembali</button>
         </div>
     </div>
 
